@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
-
+using System.Collections;
 
 enum Life { Life0,Life1,Life2,Life3, gameover}
 
@@ -21,6 +19,32 @@ namespace ProyectoBob
         int carga=3;
         float delay = 2500f;
         bool game;
+
+        //Cargar los sprites de Cactus 
+        public virtual void LoadContentCactus1(ContentManager Content, String dirName, String name)
+        {
+            cactus1 = new BasicSprite();
+            cactus1.LoadContent(Content, dirName, name);
+        }
+
+        public virtual void LoadContentCactus2(ContentManager Content, String dirName, String name)
+        {
+            cactus2 = new BasicSprite();
+            cactus2.LoadContent(Content, dirName, name);
+        }
+
+        public virtual void LoadContentCactus3(ContentManager Content, String dirName, String name)
+        {
+            cactus3 = new BasicSprite();
+            cactus3.LoadContent(Content, dirName, name);
+        }
+
+
+
+        //Cargar aqui los valores de los sprites de vivoras
+
+
+        //Cargar aqui los valores de los sprites de murcielagos 
         
         public virtual void LoadLifes(ContentManager Content)
         {
@@ -44,8 +68,10 @@ namespace ProyectoBob
             Lifes = Life.Life3;
             
         }
+
+
      
-        public virtual void ColisionCactus(Rectangle rect)
+        public virtual void Colision(Rectangle rect)
         {
             
                 for (int i = 0; i < Cactu.Count; i++)
@@ -94,6 +120,36 @@ namespace ProyectoBob
 
             return game;
             
+        }
+
+        public  virtual void UpdateEnemy (GameTime gameTime)
+         {
+             //PARA CACTUS 
+             if (direccion == SideDirection.cac)
+             {
+                 for (int k = 0; k < Cactu.Count; k++)
+                 {
+                     ((BasicSprite)Cactu[k]).SetMove(true);
+                     ((BasicSprite)Cactu[k]).SetIncrement(new Vector2(-2, 0));
+                     ((BasicSprite)Cactu[k]).Update(gameTime);
+
+                 }
+             }
+         }
+
+
+        public virtual void DrawEnemys(SpriteBatch spriteBatch)
+        {
+            switch (direccion)
+            {
+                    //Pintar los cactus
+                case SideDirection.cac:
+                    {
+                        for (int k = 0; k < Cactu.Count; k++)
+                            ((BasicSprite)Cactu[k]).Draw(spriteBatch);
+                        break;
+                    }
+            }
         }
 
             public virtual void DrawLife(SpriteBatch spriteBatch )

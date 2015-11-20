@@ -15,7 +15,7 @@ namespace ProyectoBob
 
         Bob bob;
         BasicMap theMap, theMap2;
-        Cactus cactus;
+        Cactus cactus1,cactus2,cactus3;
         Logo logo;
 
         public void LoadContent(ContentManager Content)
@@ -25,7 +25,6 @@ namespace ProyectoBob
             theMap = new BasicMap();
             theMap2 = new BasicMap();
             bob = new Bob();
-            cactus = new Cactus();
             logo = new Logo();
 
             bob.LoadContent(Content);
@@ -37,8 +36,23 @@ namespace ProyectoBob
             bob.Pos = temp;
             bob.SetMap(theMap);
             //Cactus           
-            cactus.LoadCac(Content);
-            cactus.LoadLifes(Content);
+
+            cactus1 = new Cactus();
+            cactus2 = new Cactus();
+            cactus3 = new Cactus();
+
+            cactus1.LoadConCactus1(Content);
+            cactus2.LoadConCactus2(Content);
+            cactus3.LoadConCactus3(Content);
+
+            cactus1.LoadLifes(Content);
+            cactus2.LoadLifes(Content);
+            cactus3.LoadLifes(Content);
+
+            cactus1.Cac(Content);
+            cactus2.Cac(Content);
+            cactus3.Cac(Content);
+
 
             //Mapas
             theMap.LoadContent_Transitable(Content, "Transitable", 0, -1);
@@ -58,7 +72,7 @@ namespace ProyectoBob
 
         public int Update(GameTime gameTime)
         {
-            if (cactus.Gameover() )
+            if (cactus1.Gameover() | cactus2.Gameover() | cactus3.Gameover() )
                  {
                      
                  }
@@ -67,8 +81,14 @@ namespace ProyectoBob
                 theMap.Update(gameTime);
                 theMap2.Update(gameTime);
                 bob.Update(gameTime);
-                cactus.Update(gameTime);
-                cactus.ColisionCactus(bob.Pos);
+                //Cactus
+                cactus1.UpdateEnemy(gameTime);
+                cactus2.UpdateEnemy(gameTime);
+                cactus3.UpdateEnemy(gameTime);
+                cactus1.Colision(bob.Pos);
+                cactus2.Colision(bob.Pos);
+                cactus3.Colision(bob.Pos);
+
             }
             return 1;
         }
@@ -79,8 +99,12 @@ namespace ProyectoBob
             theMap.DrawOver(spriteBatch);
             theMap2.DrawOver(spriteBatch);
             bob.Draw(spriteBatch);
-            cactus.Draw(spriteBatch);
-            cactus.DrawLife(spriteBatch);
+            cactus1.DrawEnemys(spriteBatch);
+            cactus2.DrawEnemys(spriteBatch);
+            cactus3.DrawEnemys(spriteBatch);
+            cactus1.DrawLife(spriteBatch);
+            cactus2.DrawLife(spriteBatch);
+            cactus3.DrawLife(spriteBatch);
             logo.Draw(spriteBatch);
             theMap.DrawUnder(spriteBatch);
             theMap2.DrawUnder(spriteBatch);
