@@ -12,6 +12,7 @@ namespace ProyectoBob
 {
     class Nivel1
     {
+
         Bob bob;
         BasicMap theMap, theMap2;
         Cactus cactus;
@@ -19,6 +20,8 @@ namespace ProyectoBob
 
         public void LoadContent(ContentManager Content)
         {
+
+
             theMap = new BasicMap();
             theMap2 = new BasicMap();
             bob = new Bob();
@@ -36,6 +39,7 @@ namespace ProyectoBob
             //Cactus           
             cactus.LoadCac(Content);
             cactus.LoadLifes(Content);
+
             //Mapas
             theMap.LoadContent_Transitable(Content, "Transitable", 0, -1);
             theMap.LoadContent_Notransitable("NoTransitable", Content, 0, 640);
@@ -47,15 +51,25 @@ namespace ProyectoBob
 
             //Logo
             logo.LoadContent(Content);
+
+            
+            
         }
 
         public int Update(GameTime gameTime)
         {
-            theMap.Update(gameTime);
-            theMap2.Update(gameTime);
-            bob.Update(gameTime);
-            cactus.Update(gameTime);
-            cactus.ColisionCactus(bob.Pos);
+            if (cactus.Gameover() )
+                 {
+                     
+                 }
+            else
+            {
+                theMap.Update(gameTime);
+                theMap2.Update(gameTime);
+                bob.Update(gameTime);
+                cactus.Update(gameTime);
+                cactus.ColisionCactus(bob.Pos);
+            }
             return 1;
         }
 

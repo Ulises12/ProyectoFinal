@@ -131,7 +131,7 @@
     <Content Include="Content\Menu\FondoBotonesG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Menu\gameover.jpg">
+    <Content Include="Content\Menu\gameover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu\SalirOFF.png">

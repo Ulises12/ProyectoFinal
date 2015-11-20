@@ -31,12 +31,7 @@ namespace ProyectoBob
         // Methods 
         //LoadContent para cargar los cactus
 
-        public void Load_GameOver(ContentManager Content, String dirName, String name)
-        {
-            gameOver= new BasicSprite();
-            direccion = SideDirection.GameOver;
-            gameOver.LoadContent(Content, dirName, name);
-        }
+   
 
         public virtual void Cactus(ContentManager Content, string dirName, String name, String name2, String name3)
         {

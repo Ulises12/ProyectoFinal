@@ -15,7 +15,9 @@ namespace ProyectoBob
         public void LoadCac(ContentManager Content)
         {
             this.Cactus(Content, "Cactus", "Cactus1","Cactus2", "Cactus3");
-           // this.Load_GameOver(Content, "Life", "gameover.jpg");
+
+
+
         }
       
 

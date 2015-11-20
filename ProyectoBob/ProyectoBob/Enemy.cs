@@ -9,21 +9,22 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 
 
-enum Life { Life0,Life1,Life2,Life3 }
+enum Life { Life0,Life1,Life2,Life3, gameover}
 
 //Los enemigos tendran en comun el movimiento automatico y la capacidad de restar vidas a Bob
 namespace ProyectoBob
 {
     class Enemy : AnimatedCharacter  
     {
-        BasicSprite Life0,Life1, Life2, Life3;
+        BasicSprite Life0,Life1, Life2, Life3, GameOver;
         protected Life Lifes;
         int carga=3;
         float delay = 2500f;
-
+        bool game;
         
         public virtual void LoadLifes(ContentManager Content)
         {
+
             Life0 = new BasicSprite();
             Life0.LoadContent(Content, "Life", "LifeCero");
 
@@ -35,6 +36,10 @@ namespace ProyectoBob
 
             Life3 = new BasicSprite();
             Life3.LoadContent(Content, "Life", "LifeTres");
+
+
+            GameOver = new BasicSprite();
+            GameOver.LoadContent(Content, "Menu", "gameover");
 
             Lifes = Life.Life3;
             
@@ -67,9 +72,9 @@ namespace ProyectoBob
                     else if (((BasicSprite)Cactu[i]).Colision(rect) && carga <= 1)
                     {
                         Lifes = Life.Life0;
+                        Lifes = Life.gameover;
                         carga = 0;
                         delay = 0;      
-
                     }                   
 
                     }                 
@@ -79,6 +84,17 @@ namespace ProyectoBob
 
          }
 
+         public virtual bool Gameover()
+        {
+
+            if (Lifes == Life.gameover)
+                game = true;
+            else
+                game = false;
+
+            return game;
+            
+        }
 
             public virtual void DrawLife(SpriteBatch spriteBatch )
             {
@@ -118,6 +134,15 @@ namespace ProyectoBob
                             temp.Y = 0;
                             Life0.Pos = temp;
                             Life0.Draw(spriteBatch);
+                            break;
+                        }
+                    case Life.gameover:
+                        {
+                            Rectangle tem = GameOver.Pos;
+                            tem.X = 350;
+                            tem.Y = 300;
+                            GameOver.Pos = tem;
+                            GameOver.Draw(spriteBatch);
                             break;
                         }
                 }
