@@ -134,6 +134,9 @@
     <Content Include="Content\Menu\gameover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Menu\GObob.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu\SalirOFF.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

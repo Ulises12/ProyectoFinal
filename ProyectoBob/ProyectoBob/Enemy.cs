@@ -14,7 +14,7 @@ namespace ProyectoBob
 {
     class Enemy : AnimatedCharacter  
     {
-        BasicSprite Life0,Life1, Life2, Life3, GameOver;
+        BasicSprite Life0,Life1, Life2, Life3, GameOver, GObob;
         protected Life Lifes;
         int carga=3;
         float delay = 2500f;
@@ -39,6 +39,7 @@ namespace ProyectoBob
             cactus3.LoadContent(Content, dirName, name);
         }
 
+        
 
 
         //Cargar aqui los valores de los sprites de vivoras
@@ -64,6 +65,9 @@ namespace ProyectoBob
 
             GameOver = new BasicSprite();
             GameOver.LoadContent(Content, "Menu", "gameover");
+
+            GObob = new BasicSprite();
+            GObob.LoadContent(Content, "Menu", "GObob");
 
             Lifes = Life.Life3;
             
@@ -196,9 +200,15 @@ namespace ProyectoBob
                         {
                             Rectangle tem = GameOver.Pos;
                             tem.X = 350;
-                            tem.Y = 300;
+                            tem.Y = 50;
                             GameOver.Pos = tem;
                             GameOver.Draw(spriteBatch);
+
+                            Rectangle tempo = GObob.Pos;
+                            tempo.X = 550;
+                            tempo.Y = 400;
+                            GObob.Pos = tempo;
+                            GObob.Draw(spriteBatch);
                             break;
                         }
                 }

@@ -18,6 +18,8 @@ namespace ProyectoBob
         Cactus cactus1,cactus2,cactus3;
         Logo logo;
 
+        bool GO; 
+
         public void LoadContent(ContentManager Content)
         {
 
@@ -74,7 +76,7 @@ namespace ProyectoBob
         {
             if (cactus1.Gameover() | cactus2.Gameover() | cactus3.Gameover() )
                  {
-                     
+                     GO = true;
                  }
             else
             {
@@ -98,14 +100,23 @@ namespace ProyectoBob
         {
             theMap.DrawOver(spriteBatch);
             theMap2.DrawOver(spriteBatch);
-            bob.Draw(spriteBatch);
-            cactus1.DrawEnemys(spriteBatch);
-            cactus2.DrawEnemys(spriteBatch);
-            cactus3.DrawEnemys(spriteBatch);
+            if(GO)
+            {
+
+            }
+            else
+            {
+                    bob.Draw(spriteBatch);
+                    cactus1.DrawEnemys(spriteBatch);
+                    cactus2.DrawEnemys(spriteBatch);
+                    cactus3.DrawEnemys(spriteBatch);
+                    logo.Draw(spriteBatch);
+            }
+
             cactus1.DrawLife(spriteBatch);
             cactus2.DrawLife(spriteBatch);
             cactus3.DrawLife(spriteBatch);
-            logo.Draw(spriteBatch);
+
             theMap.DrawUnder(spriteBatch);
             theMap2.DrawUnder(spriteBatch);
         }
