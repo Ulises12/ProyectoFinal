@@ -37,9 +37,7 @@ namespace ProyectoBob
         {
             cactus3 = new BasicSprite();
             cactus3.LoadContent(Content, dirName, name);
-        }
-
-        
+        }     
 
 
         //Cargar aqui los valores de los sprites de vivoras
@@ -73,8 +71,6 @@ namespace ProyectoBob
             
         }
 
-
-     
         public virtual void Colision(Rectangle rect)
         {
             
@@ -210,14 +206,9 @@ namespace ProyectoBob
                             GObob.Pos = tempo;
                             GObob.Draw(spriteBatch);
                             break;
-                        }
+                       }
                 }
             }
-         
         }
-
-
-
-
     }
 

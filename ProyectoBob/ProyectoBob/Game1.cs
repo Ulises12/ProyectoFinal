@@ -20,6 +20,7 @@ namespace ProyectoBob
         MenuPrincipal menu;
         Nivel1 nivel1;
         int currentScene;
+        float screenWidth, screenHeight;
 
 
         public Game1()
@@ -36,6 +37,8 @@ namespace ProyectoBob
 
             this.IsMouseVisible = true;
             this.graphics.IsFullScreen = true;
+            this.screenWidth = graphics.GraphicsDevice.Viewport.Width;
+            this.screenHeight = graphics.GraphicsDevice.Viewport.Height;
             base.Initialize();
         }
         protected override void LoadContent()
@@ -43,11 +46,8 @@ namespace ProyectoBob
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             menu.LoadContent(Content);
+            menu.PosicionBotones(screenWidth / 1.45f, screenHeight / 0.96f, screenWidth / 1.45f, screenHeight /0.8f, screenWidth / 1.6f, screenHeight / 8);
             nivel1.LoadContent(Content);
-
-            //bob.setHeightLimits(graphics.GraphicsDevice.Viewport.Height);
-            //bob.setWidthLimits(graphics.GraphicsDevice.Viewport.Width);
-
 
         }
         protected override void UnloadContent()
@@ -59,7 +59,6 @@ namespace ProyectoBob
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
 
             if (currentScene == 0)
             {

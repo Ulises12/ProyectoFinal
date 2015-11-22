@@ -17,18 +17,13 @@ namespace ProyectoBob
     class BasicAnimatedSprite
     {
         // Atributos
-            //Los siguientes atributos son los mismos que los que estan en BasicSprite
-        Texture2D image;
         Rectangle pos;
-        // for animation
-        int frameCount;         // How many images
-        int currentFrame;       // Which image to draw now
-        ArrayList textureList;  // Texture array for multiple images
-        float timer;            // To calc how long each frame will be shown
-        float timePerFrame;     // Time to show each frame
-        bool multipleFiles;     // True if multiple files used for animation
-        int frameWidth;         // Size of the frame
-        int frameHeight;        // Size of the frame
+        int frameCount;         // Cuantos cuadros son en total
+        int currentFrame;       // Nos dice que cuadro tenemos que dibujar
+        ArrayList textureList;  // Arreglo para almacenar las imagenes multiples
+        float timer;            
+        float timePerFrame;     
+        bool multipleFiles;           
         bool collision;
 
         // Metodos
@@ -44,7 +39,7 @@ namespace ProyectoBob
             this.textureList = new ArrayList();
             this.multipleFiles = true;
 
-            // Load all the texture images
+            //cargamos la imagenes en el arreglo
             for (int k = 1; k <= frameCount; k++)
             {
                 Texture2D tex;
@@ -52,32 +47,14 @@ namespace ProyectoBob
                 textureList.Add(tex);
             }
 
-            // we will assume all images have same dimensions (width/height)
             pos = new Rectangle(0, 0, (((Texture2D)textureList[0]).Width), (((Texture2D)textureList[0]).Height));
         }
 
-        // Load single image for animation
-        public void LoadContent(ContentManager Content, String dirName, String name, int frameWidth, int frameHeight, int frameCount, float timePerFrame)
-        {
-            this.frameCount = frameCount;
-            this.timePerFrame = timePerFrame;
-            this.currentFrame = 0;
-            this.timer = 0.0f;
-            this.frameWidth = frameWidth;
-            this.frameHeight = frameHeight;
-            this.multipleFiles = false;
 
-            // Actually load the texture
-            image = Content.Load<Texture2D>(dirName + "/" + name);
-
-            // we will assume all images have same dimensions (width/height)
-            // OJO!!! This rectangle is DIFFERENT to the one used for selecting the frame
-            pos = new Rectangle(0, 0, frameWidth, frameHeight);
-        }
 
         public void Update(GameTime gameTime)
         {
-            // Calculate how much time has passed
+            //se calcula en tiempo que ha pasado desde el ultimo cuadro
             timer = timer + (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timer >= timePerFrame)
             {
@@ -85,8 +62,7 @@ namespace ProyectoBob
                 timer = timer - timePerFrame;
             }
         }
-
-
+        
         //Metodo para checar la colision, incluso cuando el personaje se encuentra en movimiento
         public bool Colision(Rectangle rect)
         {
@@ -112,21 +88,6 @@ namespace ProyectoBob
                     spriteBatch.Draw(tex, pos, Color.White);
                 }
             }
-            // Draw animated sprite based on single file with multiple frames
-            else
-            {
-                int xTex, yTex;
-                Rectangle sourceRect;
-
-                xTex = currentFrame * frameWidth;
-                yTex = 0;
-                sourceRect = new Rectangle(xTex, yTex, frameWidth, frameHeight);
-                if (collision)
-                    spriteBatch.Draw(image, pos, sourceRect, Color.Red);
-                else
-                    spriteBatch.Draw(image, pos, sourceRect, Color.White);
-            }
-
             spriteBatch.End();
         }
         

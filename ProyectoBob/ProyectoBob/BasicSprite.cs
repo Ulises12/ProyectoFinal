@@ -18,16 +18,21 @@ namespace ProyectoBob
         Texture2D image;
         Rectangle pos;
         bool collision;
+        Vector2 increment; //Incremento para movimiento automático
+        bool move; // booleano para asiganr el movimiento automatico
 
-        Vector2 increment;
-        bool move;
 
+        //METODOS
+
+
+        //Metodo para asiganer incremento
         public void SetIncrement(Vector2 input)
         {
             increment = input;
 
         }
 
+        //Metodo para asignar moviento automatico
         public void SetMove(bool set)
         {
             move = set;

@@ -12,19 +12,11 @@ namespace ProyectoBob
 {
     class Bob : Hero
     {
-        Camel camel;
-
         public void LoadContent(ContentManager Content)
-        {         
-          
+        {        
             this.LoadContent_WalkRight(Content, "BobRight", "Front_f",8, 0.06f);
-
-            //this.LoadContent_Crouch(Content, "BobCrouch", "LinkBackStand");
-            //this.LoadContent_Jump(Content, "BobJump", "LinkFrontStand");
-
             this.LoadContent_StandRight(Content, "StandState", "StandRightP");
-
-
+            //this.LoadContent_Jump(Content, "BobJump", "LinkFrontStand");        
         }
     }
 }

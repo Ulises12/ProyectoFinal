@@ -12,49 +12,40 @@ namespace ProyectoBob
     class Hero : AnimatedCharacter
     {
         Keys jumping = Keys.Space;
-        Keys crouching = Keys.Down;
         Keys right = Keys.Right;
+        //La mayoria del codigo para saltar fue tomado de la solución "euler, jumping"
         // for jump using Euler eqs.
         float accel = 0.0f, gravity = 0.0f;
         float vel = 0.0f, posin = 0.0f, deltaT = 0.05f;
-        int posInit = 0;    // to stop the jump
+        int posInit = 0;  
         BasicMap map;
 
         public void SetMap(BasicMap theMap)
         {
-            map = theMap;
+            map = theMap;   
         }
 
-
+        //Para el salto utilizamos parte de la solucion de euler, del prf. Julián Guerrero
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            //Rectangle currentPos = this.Pos;
-            /* if (Keyboard.GetState().IsKeyDown(crouch))
-             {
-               
-             }*/
-
+           
             direccion = SideDirection.Move_Right;
             walkRigh.Update(gameTime);
             if (Keyboard.GetState().IsKeyDown(right))
-            {
-                //if (currentPos.X <= (widthLimit - currentPos.Width))
-               // {
-
+            {             
                     direccion = SideDirection.Move_Right;
                     walkRigh.Update(gameTime);
                     Rectangle currentPos = walkRigh.Pos;
-                    //Rectangle pos = new Rectangle(currentPos.X, currentPos.Y, currentPos.Width, currentPos.Height);
-                
-                    //pos.X += incX;
-                    //if (map.VallidateCollision(currentPos))
-                   // {
+                    Rectangle pos = new Rectangle(currentPos.X, currentPos.Y, currentPos.Width, currentPos.Height);
+
+                    pos.X += incX;
+                    if (map.VallidateCollision(currentPos))
+                    {
                         currentPos.X += incX;
                         this.Pos = currentPos;
-                    //}
-               // }
-                //this.Pos = currentPos;
+                    }            
+          
             }
             // Only accept ONE keyboard call - check to see we are not jumping (i.e. gravity = 0.0)
             if (Keyboard.GetState().IsKeyDown(jumping) && gravity == 0.0)

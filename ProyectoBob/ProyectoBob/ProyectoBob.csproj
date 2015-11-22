@@ -42,7 +42,6 @@
     <Compile Include="Bats.cs" />
     <Compile Include="Bob.cs" />
     <Compile Include="Cactus.cs" />
-    <Compile Include="Camel.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Hero.cs" />
@@ -123,6 +122,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Logo\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Logo\logo2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu\FondoBotones.png">

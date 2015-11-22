@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
-//using Microsoft.Xna.Framework.GamerServices;
 
 
 //La mayoria del codigo utilizado en esta clase fue reutilizado de los ejercicios realizados en clase
@@ -24,24 +23,6 @@ namespace ProyectoBob
         Rectangle pos, posit;
         Color[] OverData;
         int incX;
-
-        bool test;
-
-        //Propiedades
-        /*public Rectangle Pos
-        {
-            set
-            {
-                pos = value;
-                posit = value;
-            }
-
-            get
-            {
-                return posit;
-            }
-        }*/
-
         //Metodos
         public void LoadContent_Transitable(ContentManager Content, String transi, int x, int y)
         {
@@ -65,7 +46,7 @@ namespace ProyectoBob
         {
             this.incX = incX;
         }
-        //No se necesita este Updated
+
         public void Update(GameTime gameTime)
         {
             Rectangle currentPos = pos;
@@ -73,7 +54,7 @@ namespace ProyectoBob
 
             currentPos.X -= incX;
             currentPos1.X -= incX;
-            //regresar la imagen cuando no se dibuje
+            //regresar la imagen cuando no se dibuje, esto es porque no utilizamos cámaras 
             if (currentPos.X <= 0 - currentPos.Width)
                 currentPos.X = currentPos.Width;
 

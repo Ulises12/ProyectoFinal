@@ -12,20 +12,20 @@ namespace ProyectoBob
 {
     class MenuPrincipal
     {
-
-        Texture2D cuadro;
+        //Atributos
+        //botones
         Texture2D startON, exitON;
         Texture2D startOFF, exitOFF;
-        Texture2D imagenBob;
-
-        Color[] pixelData;
-        Texture2D cuadroGuia;
+        Texture2D imagenBob; //logo del videojuego
+        float startX, startY, exitX, exitY, BobY, BobX; //Parametrizar los tamaños de los botones
+        Color[] pixelData; //Para saber donde esta tocando el mouse
+        Texture2D cuadroGuia; //para regresar un valor, de acuerdo al color que se este tocando
         int selectedItem;
         int clickedItem;
 
+        //La mayoria de este codigo fue tomada de la solucion ""GUI manejo de escenas"
         public void LoadContent(ContentManager Content)
         {
-            cuadro = Content.Load<Texture2D>("Menu/FondoBotones");
             imagenBob = Content.Load<Texture2D>("Menu/treasure");
             cuadroGuia = Content.Load<Texture2D>("Menu/FondoBotonesG");
             startON = Content.Load<Texture2D>("Menu/StartON");
@@ -65,18 +65,27 @@ namespace ProyectoBob
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(cuadro, new Vector2(100, 100), Color.White);
-            spriteBatch.Draw(imagenBob, new Vector2(500, 100), Color.White);
-            spriteBatch.Draw(startOFF, new Vector2(550, 500), Color.White);
-            spriteBatch.Draw(exitOFF, new Vector2(550, 600), Color.White);
+            spriteBatch.Draw(imagenBob, new Vector2(BobX, BobY), Color.White);
+            spriteBatch.Draw(startOFF, new Vector2(startX, startY), Color.White);
+            spriteBatch.Draw(exitOFF, new Vector2(exitX, exitY), Color.White);
 
             if (selectedItem == 1)
-                spriteBatch.Draw(startON, new Vector2(550, 500), Color.White);
+                spriteBatch.Draw(startON, new Vector2(startX, startY), Color.White);
             if (selectedItem == 2)
-                spriteBatch.Draw(exitON, new Vector2(550, 600), Color.White);
+                spriteBatch.Draw(exitON, new Vector2(exitX, exitY), Color.White);
 
             spriteBatch.End();
         }
 
+        //Los siguientes dos metodos (setHeightLimits, setWidth) son para delimitar la pantalla 
+        public void PosicionBotones(float StrBottonX, float StrBottonY, float ExitBottonX, float ExitBottonY, float BobLogoX, float BobLogoY)
+        {
+            startY = StrBottonY;
+            startX = StrBottonX;
+            exitY = ExitBottonY;
+            exitX = ExitBottonX;
+            BobY = BobLogoY;
+            BobX = BobLogoX;
+        }
     }
 }

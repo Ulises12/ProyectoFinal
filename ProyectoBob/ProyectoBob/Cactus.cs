@@ -28,10 +28,7 @@ namespace ProyectoBob
         {
             this.LoadContentCactus3(Content, "Cactus", "Cactus3");
         }
-
-
-
-
+        
         //Logica de cactus para aparecer de forma aleatoria 
 
         public virtual void Cac(ContentManager Content)
@@ -95,8 +92,5 @@ namespace ProyectoBob
                 direccion = SideDirection.cac;
             }
         }
-
-
-        
     }
 }
